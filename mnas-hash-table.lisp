@@ -54,4 +54,13 @@
      hash-table)
     rez))
 
+(defun hash-table-copy (table)
+  "Создает копию хеш-таблицы"
+  (let ((new-table (make-hash-table
+                    :test (hash-table-test table)
+                    :size (hash-table-size table))))
+    (maphash #'(lambda(key value)
+                 (setf (gethash key new-table) value))
+             table)
+    new-table)) 
 

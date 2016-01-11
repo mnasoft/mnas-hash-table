@@ -6,6 +6,4 @@
    add-items
    to-list
    print-items
-   )
-  )
-
+   hash-table-copy))
