@@ -62,5 +62,5 @@
     (maphash #'(lambda(key value)
                  (setf (gethash key new-table) value))
              table)
-    new-table)) 
+    new-table))
 
