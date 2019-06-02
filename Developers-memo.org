@@ -11,14 +11,6 @@ git remote remove gitlab.com
 git remote add gitlab.com git@gitlab.com:mnas/mnas-hash-table.git
 
 #+END_SRC
-** Добавлние удаленных репозиториев
-#+BEGIN_SRC bash :results none
- #git remote remove cl.net
- #git remote remove origin
- #
- # git remote add github.com git@github.com:mnasoft/mnas-hash-table.git
-#+END_SRC
-
 ** Перечень удаленных репозиториев
 #+BEGIN_SRC bash 
 git remote
