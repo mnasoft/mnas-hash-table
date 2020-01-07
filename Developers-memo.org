@@ -51,3 +51,15 @@ git remote
  git push ${i} master
  done
  #+END_SRC
+
+* Создание веб-страниц документации при помощи Codex
+
+#+BEGIN_SRC lisp
+  ;;;; (require :codex)
+  ;;;; (codex:quickstart :mnas-hash-table)
+  (codex:document :mnas-hash-table)
+
+#+END_SRC
+
+#+RESULTS:
+: NIL

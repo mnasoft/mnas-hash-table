@@ -1,0 +1,26 @@
+@begin(section)
+@title(Overview)
+
+Проект реализует некоторые функции для работы с хеш-таблицами:
+@begin(list)
+ @item(наполнение хеш-таблицы элементами - add-items;)
+ @item(преобразование хеш-таблицы в список - to-list;)
+ @item(вывод содержимого хеш-таблицы в поток - print-items;)
+ @item(копирование содержимого хеш-таблицы в новую хеш-таблицу  - hash-table-copy;)
+@end(list)
+
+@end(section)
+
+@begin(section)
+@title(API Reference)
+
+@begin(section)
+@title(Функции)
+@cl:with-package[name="mnas-hash-table"](
+ @cl:doc(function add-items)
+ @cl:doc(function print-items)
+ @cl:doc(function to-list)
+ @cl:doc(function hash-table-copy))
+@end(section)
+
+@end(section)
