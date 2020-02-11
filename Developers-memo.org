@@ -1,65 +1,57 @@
-* Операции git
-** Добавлние удаленных репозиториев
-#+BEGIN_SRC bash :results none
-git remote remove github.com
-git remote add github.com git@github.com:mnasoft/mnas-hash-table.git
+* Ссылки
+1) Операции git  [[file:~/org/sbcl/Git-memo.org][Git-memo.org]]
+2) [[file:~/org/sbcl/codex.org][Генерирование документации при помощи Codex]]
+3) http://commondoc.github.io/codex/docs/tutorial.html
+4) [[file:~/.slynkrc]]
+5) [[~/.sbclrc]]
+* Генерирование документации
 
-git remote remove common-lisp.net
-git remote add common-lisp.net git@common-lisp.net:nmatvyeyev/mnas-hash-table.git
-
-git remote remove gitlab.com
-git remote add gitlab.com git@gitlab.com:mnas/mnas-hash-table.git
-
-#+END_SRC
-** Перечень удаленных репозиториев
-#+BEGIN_SRC bash 
-git remote
+#+name: pwd
+#+BEGIN_SRC shell
+pwd
 #+END_SRC
 
- #+RESULTS:
- | KO11-118383     |
- | MNASOFT-01      |
- | MNASOFT-10      |
- | N118389         |
- | common-lisp.net |
- | github.com      |
- | hp1.zorya.com   |
- | mnasoft-00      |
- | mnasoft-dev     |
- | mnasoft-pi      |
- | origin          |
- | share           |
+#+name: basename-pwd
+#+BEGIN_SRC shell
+basename `pwd`
+#+END_SRC
 
-** Коммит изменений
- #+BEGIN_SRC bash :results none
- DATE=`date`
- git commit -a -m "$DATE"
- #+END_SRC
-
-** Получение изменений с удаленных серверов
- #+BEGIN_SRC bash :results none
- for i in github.com gitlab.com common-lisp.net 
- do
- git pull ${i} master
- done
- #+END_SRC
-
-** Публикация изменений на удаленных серверах
- #+BEGIN_SRC bash :results none
- for i in github.com gitlab.com common-lisp.net 
- do
- git push ${i} master
- done
- #+END_SRC
-
-* Создание веб-страниц документации при помощи Codex
-
-#+BEGIN_SRC lisp
+#+name:make-graph
+#+BEGIN_SRC lisp :var pwd=pwd :var basename-pwd=basename-pwd
   ;;;; (require :codex)
-  ;;;; (codex:quickstart :mnas-hash-table)
-  (codex:document :mnas-hash-table)
-
+  ;;;; (require :mnas-package)
+  ;;;;
+  ;;;; (require :mnas-graph)
+  (let ((pkg :mnas-hash-table)
+	(fpath (concatenate
+		'string
+		(cond ((uiop:getenv "MSYS_HOME")) (t ""))
+		pwd "/docs/build/"
+		basename-pwd "/html/")))
+    (codex:document pkg)
+    (mnas-package:view-call-graph   pkg :out-type "png" :viewer nil :fpath fpath :fname "call-graph")
+    (mnas-package:view-system-graph pkg :out-type "png" :viewer nil :fpath fpath :fname "system-graph")
+    (mnas-package:view-class-graph  pkg :out-type "png" :viewer nil :fpath fpath :fname "class-graph")
+    (mnas-package:view-symbol-graph pkg :out-type "png" :viewer nil :fpath fpath :fname "symbol-graph"))
+#+END_SRC
+* Публикация
+#+name: publish
+#+BEGIN_SRC shell :var make-graph=make-graph
+  if [[ `hostname` == "mnasoft-00" ]]
+  then
+      echo "mnasoft-00"
+      mkdir -p "$HOME/public_html/Common-Lisp-Programs/"
+      CDIR=`basename $PWD`
+      rm -rf "$HOME/public_html/Common-Lisp-Programs/$CDIR/"
+      cp -rf ./docs/build/* "$HOME/public_html/Common-Lisp-Programs/"
+  fi
+  if [[ `hostname` == "ko11-118383" ]]
+  then
+      CDIR=`basename $PWD`
+      rm -rf "\\\\n133619\\home\\_namatv\\public_html\\Site\\Development\\Common-Lisp-Programs\\$CDIR\\";
+      sleep 5;
+      cp -rf "./docs/build/$CDIR" "\\\\n133619\\home\\_namatv\\public_html\\Site\\Development\\Common-Lisp-Programs\\";
+   fi
 #+END_SRC
 
-#+RESULTS:
-: NIL
+#+RESULTS: publish

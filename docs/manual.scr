@@ -1,6 +1,5 @@
 @begin(section)
-@title(Overview)
-
+@title(Обзор)
 Проект реализует некоторые функции для работы с хеш-таблицами:
 @begin(list)
  @item(наполнение хеш-таблицы элементами - add-items;)
@@ -8,11 +7,17 @@
  @item(вывод содержимого хеш-таблицы в поток - print-items;)
  @item(копирование содержимого хеш-таблицы в новую хеш-таблицу  - hash-table-copy;)
 @end(list)
-
 @end(section)
 
 @begin(section)
-@title(API Reference)
+ @title(Графы)
+ @begin(list)
+  @item(system-graph @image[src=./system-graph.gv.png]())
+  @item(call-graph   @image[src=./call-graph.gv.png]())
+  @item(symbol-graph @image[src=./symbol-graph.gv.png]())
+  @item(class-graph  @image[src=./class-graph.gv.png]())
+ @end(list)
+@end(section)
 
 @begin(section)
 @title(Функции)
@@ -21,6 +26,4 @@
  @cl:doc(function print-items)
  @cl:doc(function to-list)
  @cl:doc(function hash-table-copy))
-@end(section)
-
 @end(section)
