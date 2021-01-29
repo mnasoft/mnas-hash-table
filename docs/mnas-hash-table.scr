@@ -1,0 +1,23 @@
+@begin(section) @title(Обзор)
+
+System @b(mnas-hash-table) defines some functions for working with hash tables.@end(section)
+@begin(section) @title(MNAS-HASH-TABLE)
+
+ @b(Описание:) пакет @b(mnas-hash-table) определяет некоторые
+  функции для работы с хеш-таблицами.
+
+ Пакет содержит следующие применимые к хеш-таблицам функции:
+@begin(list)
+ @item(populate - наполнения элементами;)
+ @item(to-list - преобразования в список;)
+ @item(print-items - вывода элементов в поток;)
+ @item(hash-table-copy - копирования.)
+@end(list)@begin(section)
+ @title(Функции)
+ @cl:with-package[name="MNAS-HASH-TABLE"](
+  @cl:doc(function populate)
+  @cl:doc(function hash-table-copy)
+  @cl:doc(function print-items)
+  @cl:doc(function to-list))
+@end(section)
+@end(section)

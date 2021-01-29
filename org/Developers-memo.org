@@ -1,0 +1,40 @@
+* Ссылки [[~/org/sbcl/sbcl-referencies.org][Ссылки]]
+ 
+* Генерирование документации
+#+name: codex
+#+BEGIN_SRC lisp
+  (loop
+    :for i :in
+    '((:mnas-hash-table :mnas-hash-table)
+      )
+    :do (mnas-package:document (first i) (second i)))
+  (codex:document :mnas-hash-table)
+#+END_SRC
+
+#+name: graphs
+#+BEGIN_SRC lisp :var codex=codex
+    (loop
+      :for i :in
+      '(:mnas-hash-table
+        )
+      :do (mnas-package:make-codex-graphs i i))
+#+END_SRC
+* Публикация
+#+name: publish
+#+BEGIN_SRC shell :var graphs=graphs
+    mkdir -p "$HOME/public_html/Common-Lisp-Programs/"
+    CDIR=`dirname $PWD | xargs basename`
+    rsync -Pazh --delete ../docs/build/$CDIR/html/ $HOME/public_html/Common-Lisp-Programs/$CDIR 
+    if [[ `hostname` == "mnasoft-00" ]]
+    then
+	echo "mnasoft-00"
+  #     sh ~/bin/pi-html
+    fi
+    if [[ `hostname` == "N118383" ]]
+    then
+	echo "N118383"
+        CPL="//n133619/home/_namatv/public_html/Site/Development/Common-Lisp-Programs"
+	mkdir -p $CPL/$CDIR
+	rsync -Pazh --delete ../docs/build/$CDIR/html/ $CPL/$CDIR
+     fi
+#+END_SRC

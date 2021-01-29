@@ -1,0 +1,5 @@
+  @begin(section) @title(Графы mnas-hash-table)
+  @begin(list)
+   @item(call-graph   @image[src=./call-graph-mnas-hash-table.gv.png]())
+  @end(list)
+ @end(section)
