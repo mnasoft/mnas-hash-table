@@ -13,12 +13,6 @@
 		:serial nil
                 :components ((:file "mnas-hash-table")))))
 
-(defsystem "mnas-hash-table/docs"
-  :description "Зависимости для сборки документации"
-  :author "Nick Matvyeyev <mnasoft@gmail.com>"
-  :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
-  :depends-on ("mnas-hash-table" "mnas-package" "codex"))
-
 (defsystem "mnas-hash-table/tests"
   :description "Тестирование систем, входящих  в проект mnas-package"
   :author "Nick Matvyeyev <mnasoft@gmail.com>"
@@ -33,3 +27,11 @@
                              (:file "main" :depends-on ("all"))
                              (:file "run"  :depends-on ("main"))
                              ))))
+
+(defsystem "mnas-hash-table/docs"
+  :description "Зависимости для сборки документации"
+  :author "Nick Matvyeyev <mnasoft@gmail.com>"
+  :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
+  :depends-on ("mnas-hash-table"
+               ;; "mnas-package"
+               "codex"))
