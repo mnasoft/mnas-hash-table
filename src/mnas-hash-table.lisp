@@ -51,6 +51,22 @@
 	2d-list)
   hash-table)
 
+(defun to-list (hash-table)
+  " @b(Описание:) функция @b(to-list) возвращает 2d-список, каждый
+ элемент которо содержажит ключ и значение, соответствующих элементов,
+ содержащихся в хеш-таблице @b(hash-table).
+
+ @b(Пример использования:) @begin[lang=lisp](code)
+  (to-list (populate (make-hash-table) '((1 2 3)(4 5 6)(7 8 9)) 1 2))
+@end(code)
+"
+  (let ((rez nil))
+    (maphash
+     #'(lambda (k v)
+	 (setf rez (append rez (list(list k v)))))
+     hash-table)
+    rez))
+
 (defun print-items (hash-table
 		    &key
 		      (stream t)
@@ -71,32 +87,16 @@
 	    0 2))
 @end(code)
 "
-  (maphash
-   #'(lambda (k v)
-       (format stream
-	       (concatenate 'string
-			    field-format
-			    field-separator
-			    field-format
-			    line-separator)
-	       k v))
-   hash-table))
-
-(defun to-list (hash-table)
-  " @b(Описание:) функция @b(to-list) возвращает 2d-список, каждый
- элемент которо содержажит ключ и значение, соответствующих элементов,
- содержащихся в хеш-таблице @b(hash-table).
-
- @b(Пример использования:) @begin[lang=lisp](code)
-  (to-list (populate (make-hash-table) '((1 2 3)(4 5 6)(7 8 9)) 1 2))
-@end(code)
-"
-  (let ((rez nil))
-    (maphash
-     #'(lambda (k v)
-	 (setf rez (append rez (list(list k v)))))
-     hash-table)
-    rez))
+  (format stream
+          (concatenate 'string
+                       "~{~{" 
+		       field-format
+		       field-separator
+		       field-format
+                       "~}"
+		       line-separator
+                       "~}")
+	  (to-list hash-table)))
 
 (defun hash-table-copy (hash-table)
   " @b(Описание:) функция @b(hash-table-copy) возвращает копию
