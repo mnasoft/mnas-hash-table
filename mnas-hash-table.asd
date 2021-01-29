@@ -5,7 +5,8 @@
   " System @b(mnas-hash-table) defines some functions for working with
   hash tables."
   :author "Nick Matvyeyev <mnasoft@gmail.com>"
-  :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
+  :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"
+  :version "0.1.0"
   :serial nil
   :in-order-to ((test-op (test-op "mnas-hash-table/tests")))
   ;; :depends-on ()  
