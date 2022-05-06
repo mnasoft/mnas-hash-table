@@ -1,13 +1,14 @@
 ;;;; mnas-hash-table.lisp
 
-(in-package #:cl-user)
-
 (defpackage #:mnas-hash-table
   (:use #:cl) 
   (:export print-items
            hash-table-copy
            populate
-           to-list)
+           to-list
+           keys
+           vals
+           )
   (:documentation
   " @b(Описание:) пакет @b(mnas-hash-table) определяет некоторые
   функции для работы с хеш-таблицами.
@@ -62,10 +63,18 @@
 "
   (let ((rez nil))
     (maphash
-     #'(lambda (k v)
-	 (setf rez (append rez (list(list k v)))))
+     #'(lambda (key value)
+	 (push (list key value) rez))
      hash-table)
     rez))
+
+(defun keys (hash-table)
+  (loop :for key :being :the :hash-keys :in hash-table
+        :collect key))
+
+(defun vals (hash-table)
+  (loop :for value :being :the :hash-values :in hash-table
+        :collect value))
 
 (defun print-items (hash-table
 		    &key
