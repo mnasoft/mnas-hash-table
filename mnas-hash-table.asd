@@ -4,7 +4,7 @@
   :description
   " System @b(mnas-hash-table) defines some functions for working with
   hash tables."
-  :author "Nick Matvyeyev <mnasoft@gmail.com>"
+  :author "Mykola Matvyeyev <mnasoft@gmail.com>"
   :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"
   :version "0.1.0"
   :serial nil
@@ -16,7 +16,7 @@
 
 (defsystem "mnas-hash-table/tests"
   :description "Тестирование систем, входящих  в проект mnas-package"
-  :author "Nick Matvyeyev <mnasoft@gmail.com>"
+  :author "Mykola Matvyeyev <mnasoft@gmail.com>"
   :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
   :depends-on ("mnas-hash-table" "fiveam")
   :perform (test-op (o s)
@@ -31,7 +31,7 @@
 
 (defsystem "mnas-hash-table/docs"
   :description "Зависимости для сборки документации"
-  :author "Nick Matvyeyev <mnasoft@gmail.com>"
+  :author "Mykola Matvyeyev <mnasoft@gmail.com>"
   :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
   :depends-on ("mnas-hash-table"
                ;; "mnas-package"
