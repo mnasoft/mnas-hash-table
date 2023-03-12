@@ -1,6 +1,6 @@
 ;;;; mnas-hash-table.lisp
 
-(defpackage #:mnas-hash-table
+(defpackage :mnas-hash-table
   (:use #:cl) 
   (:export print-items
            hash-table-copy
@@ -21,7 +21,7 @@
  @item(hash-table-copy - копирования.)
 @end(list)"))
 
-(in-package #:mnas-hash-table)
+(in-package :mnas-hash-table)
 
 (defun populate (hash-table 2d-list key-index value-index)
   " @b(Описание:) функция @b(populate) добавляет в хеш-таблицу
